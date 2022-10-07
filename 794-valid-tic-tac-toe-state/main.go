@@ -9,18 +9,19 @@ const (
 
 var (
 	winField = map[[3][2]int]struct{}{
-		{{0,0}, {1,1}, {2,2}}: {},
-		{{0,2}, {1,1}, {2,0}}: {},
-		{{0,0}, {0,1}, {0,2}}: {},
-		{{1,0}, {1,1}, {1,2}}: {},
-		{{2,0}, {2,1}, {2,2}}: {},
-		{{0,0}, {1,0}, {2,0}}: {},
-		{{0,1}, {1,1}, {2,1}}: {},
-		{{0,2}, {1,2}, {2,2}}: {},
+		{{0, 0}, {1, 1}, {2, 2}}: {},
+		{{0, 2}, {1, 1}, {2, 0}}: {},
+		{{0, 0}, {0, 1}, {0, 2}}: {},
+		{{1, 0}, {1, 1}, {1, 2}}: {},
+		{{2, 0}, {2, 1}, {2, 2}}: {},
+		{{0, 0}, {1, 0}, {2, 0}}: {},
+		{{0, 1}, {1, 1}, {2, 1}}: {},
+		{{0, 2}, {1, 2}, {2, 2}}: {},
 	}
 )
 
 type sortable [][]int
+
 func (s sortable) Less(i, j int) bool {
 	if s[i][0] == s[j][0] {
 		return s[i][1] < s[j][1]
@@ -28,7 +29,7 @@ func (s sortable) Less(i, j int) bool {
 
 	return s[i][0] < s[j][0]
 }
-func (s sortable) Swap(i,j int) {
+func (s sortable) Swap(i, j int) {
 	s[i], s[j] = s[j], s[i]
 }
 
@@ -38,7 +39,7 @@ func (s sortable) Len() int {
 
 func validTicTacToe(board []string) bool {
 	xMoves, oMoves := [][2]int{}, [][2]int{}
-	for i :=0; i < len(board); i ++ {
+	for i := 0; i < len(board); i++ {
 		for j, r := range board[i] {
 			switch r {
 			case x:
@@ -54,12 +55,12 @@ func validTicTacToe(board []string) bool {
 	}
 
 	//check if only 1 win combo is on the board
-	arr := sortable{{0,0},{0,0},{0,0}}
+	arr := sortable{{0, 0}, {0, 0}, {0, 0}}
 	checker := [3][2]int{}
 	gotWinnerX := false
-	for a := 0; a < len(xMoves); a ++ {
-		for b := 0; b < len(xMoves); b ++ {
-			for c := 0; c < len(xMoves); c ++ {
+	for a := 0; a < len(xMoves); a++ {
+		for b := 0; b < len(xMoves); b++ {
+			for c := 0; c < len(xMoves); c++ {
 				if a == b || b == c || a == c {
 					continue
 				}
@@ -78,9 +79,9 @@ func validTicTacToe(board []string) bool {
 	}
 
 	gotWinnerO := false
-	for a := 0; a < len(oMoves); a ++ {
-		for b := 0; b < len(oMoves); b ++ {
-			for c := 0; c < len(oMoves); c ++ {
+	for a := 0; a < len(oMoves); a++ {
+		for b := 0; b < len(oMoves); b++ {
+			for c := 0; c < len(oMoves); c++ {
 				if a == b || b == c || a == c {
 					continue
 				}
@@ -126,4 +127,4 @@ func validTicTacToe(board []string) bool {
 [O][O][X]
 [O][O][ ]
 
- */
+*/
